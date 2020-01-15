@@ -31,11 +31,11 @@ router.get('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
     const newPost = req.body;
-
+    const id = req.params.id;
     if (newPost.title === undefined || newPost.contents === undefined) {
         res.status(400).json({ errorMessage: "Please provide title and contents for the post." })
     } else {
-        data.update(newPost)
+        data.update(id, newPost)
         .then(response => {
             if (response !== undefined) {
                 res.status(200).json(response);
