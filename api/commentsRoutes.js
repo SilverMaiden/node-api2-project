@@ -29,7 +29,7 @@ router.get('/:id/comments', (req, res) => {
 router.post('/:id/comments', (req, res) => {
     const toPost = req.body;
 
-    if (toPost.text === undefined) {
+    if (toPost.text === undefined || toPost.text.length === 0) {
         res.status(400).json({ errorMessage: "Please provide text for the comment." })
     } else {
         data.insertComment(toPost)
